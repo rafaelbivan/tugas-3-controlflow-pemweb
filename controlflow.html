@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perhitungan Nilai Mahasiswa</title>
+    <style>
+        body {
+            font-family: 'fantasy', Times, serif, sans-serif;
+            max-width: 700px;
+            margin: 70px auto;
+            padding: 180px;
+            margin-top: 70px;
+            margin-right: 200px;
+            background: radial-gradient(circle, rgb(125, 105, 143), rgb(218, 137, 229), rgb(191, 181, 191));
+            font-size: x-large;
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: inline-block;
+            width: 150px;
+        }
+        input {
+            width: 100px;
+            padding: 5px;
+        }
+        button {
+            background-color: rgb(52, 35, 10);
+            color: bisque;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: lightgoldenrodyellow;
+        }
+        #hasil {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid black;
+            border-radius: 4px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h2>Perhitungan Nilai Mahasiswa</h2>
+    
+    <div class="input-group">
+        <label>Nilai Presensi (10%):</label>
+        <input type="number" id="presensi" value="0" min="0" max="100">
+    </div>
+    
+    <div class="input-group">
+        <label>Nilai Tugas (20%):</label>
+        <input type="number" id="tugas" value="0" min="0" max="100">
+    </div>
+    
+    <div class="input-group">
+        <label>Nilai UTS (30%):</label>
+        <input type="number" id="uts" value="0" min="0" max="100">
+    </div>
+    
+    <div class="input-group">
+        <label>Nilai UAS (40%):</label>
+        <input type="number" id="uas" value="0" min="0" max="100">
+    </div>
+    
+    <button onclick="hitungNilai()">Hitung Nilai</button>
+    
+    <div id="hasil">
+        <h3>Hasil Perhitungan:</h3>
+        <p>Nilai Akhir: <span id="nilaiAkhir">0</span></p>
+        <p>Grade: <span id="grade">-</span></p>
+    </div>
+
+    <script>
+        function hitungNilai() {
+            // Ambil nilai dari input
+            const presensi = parseFloat(document.getElementById('presensi').value) || 0;
+            const tugas = parseFloat(document.getElementById('tugas').value) || 0;
+            const uts = parseFloat(document.getElementById('uts').value) || 0;
+            const uas = parseFloat(document.getElementById('uas').value) || 0;
+
+            // Hitung nilai akhir
+            const nilaiAkhir = (presensi * 0.1) + (tugas * 0.2) + (uts * 0.3) + (uas * 0.4);
+
+            // Tentukan grade
+            let grade;
+            if (nilaiAkhir > 80) {
+                grade = 'A';
+            } else if (nilaiAkhir > 75) {
+                grade = 'B+';
+            } else if (nilaiAkhir > 70) {
+                grade = 'B';
+            } else if (nilaiAkhir > 65) {
+                grade = 'B-';
+            } else if (nilaiAkhir > 60) {
+                grade = 'C+';
+            } else if (nilaiAkhir > 55) {
+                grade = 'C';
+            } else if (nilaiAkhir > 50) {
+                grade = 'C-';
+            } else if (nilaiAkhir > 30) {
+                grade = 'D';
+            } else {
+                grade = 'E';
+            }
+
+            // Tampilkan hasil
+            document.getElementById('nilaiAkhir').textContent = nilaiAkhir.toFixed(2);
+            document.getElementById('grade').textContent = grade;
+            document.getElementById('hasil').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
